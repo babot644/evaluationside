@@ -1,0 +1,103 @@
+
+      
+
+    {% include 'evaluation/header.html' %}
+
+ 
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" style="text-align: center;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %} 
+    {% block content %} 
+  <div class="container3">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="Deped_logo.png" alt="">
+        <div class="text">
+          <span class="text-1">Department of Education <br> Evaluation System</span>
+          <span class="text-2">2021-2022</span>
+        </div>
+      </div>
+      <div class="back">
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+          <form method="POST" action="/loginUser/"> 
+            {% csrf_token %}
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Enter your email" name="loginUsername" id="loginUsername" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter your password" name="loginPassword" id="loginPassword" required>
+              </div>
+              <div class="text"><a href="{% url 'forgotPassword' %}">Forgot password?</a></div>
+              <div class="button input-box">
+                <input type="submit" value="Login">
+              </div>
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
+            </div>
+        </form>
+      </div>
+        <div class="signup-form">
+          <div class="title">Sign up</div>
+        <form method="POST" action="/registerUser/">
+          {% csrf_token %}
+          
+            <div class="input-boxes">
+              
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your first name" name="registerFirstName" id="registerFirstName"required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your middle name" name="registerMiddleName" id="registerMiddleName"required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your last name" name="registerLastName" id="registerLastName"required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your contact number" name="registerContactNumber" id="registerContactNumber"required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Enter your email" name="registerEmail" id="registerEmail" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter your password" name="registerPassword" id="registerPassword" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter Confirmn password" name="registerCPassword" id="registerCPassword"  required>
+              </div>
+              <div class="button input-box">
+                <input type="submit" value="Sign up">
+              </div>
+              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+            </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+
+        
+    
+    
+  {% endblock %}
+    
+

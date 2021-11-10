@@ -1,0 +1,42 @@
+<head> 
+    {% load static %}
+    {% block content %}
+    
+    <link rel="stylesheet" href="{% static 'css/designx.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <title>Deped Evaluation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<div class="d-flex justify-content-center">
+<nav class="navbar" style="text-align: center; margin:auto; color: white; box-shadow: grey 2px 2px; background-color: #4B778D; width: 100%;">
+    <a  href="#" class="lul">
+      <img src="{% static 'images/Deped_logo.png' %}" width="5%" height="10%"  alt="">
+        <br>Department of Education Evaluation System 
+    </a> 
+            
+           
+            {% if Username %}
+            <a href="{% url 'availableseminars' %}" class="btn btn-primary" >See Available Seminars</a>
+            <a href="{% url 'logout' %}" class="btn btn-primary" >Logout</a>
+              {% else %}
+              <a href="{% url 'login' %}" class="btn btn-primary" id="bost">Login</a> 
+            {% endif %}
+            
+    </div>
+</nav>
+        
+      
+</nav>
+
+
+
+
+
+ {% endblock content %}
+
+ 
