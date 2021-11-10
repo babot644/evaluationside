@@ -384,7 +384,9 @@ tr{
 .d{
   border-collapse: collapse;
   margin: auto;
-  width: 80%;
+ 
+  min-width: 80%;
+  max-width: 80%;
   
   text-align: center;
 
