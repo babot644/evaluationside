@@ -12,21 +12,22 @@
 
 </head>
 
-<div class="d-flex justify-content-center">
-<nav class="navbar" style="text-align: center; margin:auto; color: white; box-shadow: grey 2px 2px; background-color: #4B778D; width: 100%;">
+
+<nav  style="text-align: center; margin:auto; color: white; box-shadow: grey 2px 2px; background-color: #4B778D; width: 100%;">
     <a  href="#" class="lul">
-      <img src="{% static 'images/Deped_logo.png' %}" width="5%" height="10%"  alt="">
-        <br>Department of Education Evaluation System 
+      <img src="{% static 'images/Deped_logo.png' %}" style="min-width: 8%; max-width: 5%;"  alt="">
+      <p style="font-size: 20px;">Department of Education Evaluation System </p>
     </a> 
-            
-           
+    
+         
+          <p style="text-align: right; padding-right: 5px; padding-bottom:5px">
             {% if Username %}
             <a href="{% url 'availableseminars' %}" class="btn btn-primary" >See Available Seminars</a>
-            <a href="{% url 'logout' %}" class="btn btn-primary" >Logout</a>
+            <a href="{% url 'logout' %}" class="btn btn-primary" style="background-color:red">Logout</a>
               {% else %}
               <a href="{% url 'login' %}" class="btn btn-primary" id="bost">Login</a> 
             {% endif %}
-            
+          </p>
     </div>
 </nav>
         
