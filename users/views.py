@@ -69,10 +69,11 @@ def loginUser(request):
         value = avail.to_dict()
         availSeminars.append(value)
     request.session['userSession'] = user_signin['email']
+    
     userSession = request.session['userSession']
     return render(request,  'evaluation/availableseminars.html', {"Username":userSession, "available":availSeminars})
 def registerUser(request):
-        
+        registerAddress = request.POST.get('registerAddress')
         registerEmail = request.POST.get("registerEmail")
         registerPassword = request.POST.get("registerPassword")
         registerCPassword = request.POST.get('registerCPassword')
@@ -83,6 +84,7 @@ def registerUser(request):
         now = int(time.time())
         registerGender = request.POST.get('gender')
         data = {
+            u'address': registerAddress,
             u'gender': registerGender,
             u'email': registerEmail,
             u'password': registerPassword,
@@ -93,25 +95,29 @@ def registerUser(request):
             u'evaluator_id': str(now),
             u'date_created': datetime.datetime.now(),
             }
+        if len(registerPassword) < 8 and len(registerCPassword) < 8:
+                    messages.warning(request, "Please make your password stronger 8 characters minimum 25 maximum")
+                    return render(request,  'users/login.html')
+        elif len(registerPassword) > 25 and len(registerCPassword) > 25:
+                    messages.warning(request, "Please make your password stronger 8 characters minimum 25 maximum")
+                    return render(request,  'users/login.html')
         if registerPassword == registerCPassword:  
                 try:
-                    user = auth.create_user_with_email_and_password(registerEmail, registerPassword)
-                    doc_ref = firestoreDB.collection(u'evaluators').document(str(now))
-                    doc_ref.set(data)
-                    messages.success(request, "New User Registered!" )
-                    return render(request,  'users/login.html') 
-                except requests.HTTPError as e:
-                    error_json = e.args[1]
-                    error = json.loads(error_json)['error']['message']
-                    if error == "EMAIL_EXISTS":
-                        messages.warning(request, "Email Already Exists!")
-                        return render(request, 'users/login.html')
+                        user = auth.create_user_with_email_and_password(registerEmail, registerPassword)
+                        doc_ref = firestoreDB.collection(u'evaluators').document(str(now))
+                        doc_ref2 = firestoreDB.collection(u'evaluator_report').document(str(now))
+                        doc_ref2.set(data)
+                        doc_ref.set(data)
+                        messages.success(request, "New User Registered!" )
+                        return render(request,  'users/login.html') 
+                except:
+                     messages.warning(request, "Email Already Taken")
+                     return render(request, 'users/login.html')
         else:
             messages.warning(request, "Password Do not Match!")
             return render(request,  'users/login.html')
         
-         
-
+        
 def availableSeminars(request):
     seminars = firestoreDB.collection(u'seminars').get()
     availSeminars = []
@@ -181,9 +187,15 @@ def evaluationInfo(request):
     seminarFacilitator = request.POST.get("Facilitator")
     seminar_id = request.POST.get("seminar_id")
     now = int(time.time())
-    evaluatorEmail= request.session['userSession']
-   
+    evaluatorEmail = str(request.session['userSession'])
+    docs = firestoreDB.collection('evaluators').where('email', '==', evaluatorEmail).get()
+    yawa = []
+    for doc in docs:
+        yawa.append(doc.to_dict())
+
+    fullName = yawa[0]['first_name'] + " " + yawa[0]['middle_name'] + " " + yawa[0]['last_name']
     data = {
+            "full_name": fullName,
             "date_evaluated": now,
             "evaluatorEmail": evaluatorEmail,
             "seminarTitle" : seminarTitle,
@@ -232,8 +244,8 @@ def evaluationInfo(request):
     if q1 and q2 and q3 and q4 and q5 and q6 and q7 and q8 and qq1 and qq2 and qq3 and qq4 and qq5 and qq6 and qq7 and qq8 and qq9 and qqq1 and qqq2 and qqq3 and qqqq1 and qqqq2 and qqqq3 and qqqqq1 and qqqqq2 and qqqqq3 and qqqqq4 and qqqqqq1 and qqqqqq2 and qqqqqq3 and qqqqqq4 and comment1 and comment2 and comment3 and comment4 :
         if request.session['userSession']:
             userLoggedin = request.session['userSession']
-        firestoreDB.collection("evaluations").document(seminar_id).set(data2)
-        x = firestoreDB.collection(u'evaluations').document(seminar_id).collection("evaluators").document(request.session['userSession'])
+        
+        x = firestoreDB.collection(u'evaluations').document(seminar_id).collection("evaluators").document(yawa[0]['evaluator_id'])
         x.set(data)
         messages.success(request, "Thankyou for your evaluation!." )
         return render(request,  'evaluation/availableseminars.html', {"Username": userLoggedin})  

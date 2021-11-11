@@ -13,10 +13,15 @@
 {% endif %}
   {% if request.session.userSession %}
   {% include 'evaluation/instructionpage.html' %}
+  
 
-    <table style="text-align:center; width:100%; margin:auto;" class="evalu">
+
+
+
+
+    <table class="teybol" style="font-size:large; width:80%; margin: auto; text-align: center;">
       <tr>
-          <td class="foots" colspan="5"></td>
+          <td class="foots" colspan="4"> </td>
       </tr>
       <tr class="Eva">
           <th colspan="3" class="Evas" style="text-align: center;" > Evaluation </th>
@@ -26,6 +31,7 @@
         <th class="datePosted">Date Posted</th>
         <th>Facilitator</th>
       </tr>
+
     {% for avails in available %}
      
     {% if avails.ongoing == "true" %}
@@ -34,22 +40,23 @@
     <tr>
       <td class="seminarTitle">{{avails.seminar_name}}</td>
       <td class="datePosted">{{avails.date_created}}</td>
-      <td class="seminarEvaluator">{{avails.facilitator}}</td>
+      <td class="seminarEvaluator">{{avails.facilitator}} <button type="sumbit" class="btn btn-primary">Evaluate</button></td>
+      
+    </tr>
+
       <input type="hidden" name="seminarTitle" value="{{avails.seminar_name}}"/>
       <input type="hidden" name="date_posted" value="{{avails.date_created}}"/>
       <input type="hidden" name="seminarFacilitator" value="{{avails.facilitator}}"/>
       <input type="hidden" name="seminar_id" value="{{avails.seminar_id}}"/>
       <input type="hidden" name="ongoingUser" value="{{request.session.userSession}}"/>
-      <td><button type="sumbit" class="btn btn-primary">Evaluate</button></a></td>
-    </tr>
     </form>
     {% endif %}
       {% endfor %}
-     
     <tr>
-      <td class="foots" colspan="5" style="color: white;"> 2021 - 2022</td>
+      <td class="foots" colspan="4" style="color: white; text-align: center;"> 2021 - 2022</td>
   </tr>
   </table>
+
     {% else %}
     <br><br>
     <div class="d-flex justify-content-center">
@@ -57,6 +64,8 @@
           <legend style="display: block; padding-left: 2px; padding-right:2px; border: none;">You can't access this area.</legend>
           <a href="{% url 'login' %}" class="d-flex justify-content-center">You need to be logged in!</a>
       </fieldset>
+    </div>
+    
   {% endif%}
 {% endblock content %}
 

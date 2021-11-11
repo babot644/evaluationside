@@ -411,7 +411,7 @@ textarea{
 }
 .foots{
   background-color: #4B778D;
-  padding: 2%;
+  
 }
 
 
@@ -429,9 +429,4 @@ textarea{
 }
 
 
-@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
-.evalu{
-  max-width: 481px;
-}
 
-}
