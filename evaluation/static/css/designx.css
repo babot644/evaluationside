@@ -381,17 +381,7 @@ tr{
   text-align: left;
   border-collapse: collapse;
 }
-.d{
-  border-collapse: collapse;
-  margin: auto;
- 
-  min-width: 80%;
-  max-width: 80%;
-  
-  text-align: center;
 
- 
-}
 .evaluation_area{
   max-width: 80%;
   min-width: 80%;

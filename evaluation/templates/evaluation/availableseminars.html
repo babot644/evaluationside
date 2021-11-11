@@ -13,21 +13,19 @@
 {% endif %}
   {% if request.session.userSession %}
   {% include 'evaluation/instructionpage.html' %}
-  <table class="d">
+  
+    <table style="text-align:center; width:100%; margin:auto;">
       <tr>
           <td class="foots" colspan="5"></td>
       </tr>
       <tr class="Eva">
-          <th colspan="3" class="Evas" style="text-align: center;" > Evaluation <th class="settings">Settings</th></th>
+          <th colspan="3" class="Evas" style="text-align: center;" > Evaluation </th>
       </tr>
       <tr>
         <th>Seminars Available </th>
         <th class="datePosted">Date Posted</th>
         <th>Facilitator</th>
       </tr>
-    
-    
-    
     {% for avails in available %}
      
     {% if avails.ongoing == "true" %}

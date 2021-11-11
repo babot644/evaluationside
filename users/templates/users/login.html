@@ -75,6 +75,7 @@
                 <i class="fas fa-user"></i>
                 <input type="text" placeholder="Enter your contact number" name="registerContactNumber" id="registerContactNumber"required>
               </div>
+              
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
                 <input type="email" placeholder="Enter your email" name="registerEmail" id="registerEmail" required>
@@ -87,8 +88,19 @@
                 <i class="fas fa-lock"></i>
                 <input type="password" placeholder="Enter Confirmn password" name="registerCPassword" id="registerCPassword"  required>
               </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                Select Gender: 
+                <select name="gender" id="gender" required>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                
+              </div>
               <div class="button input-box">
-                <input type="submit" value="Sign up">
+                
+                
+                <input type="submit" onclick="getGender()" value="Sign up" >
               </div>
               <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
             </div>

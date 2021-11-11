@@ -81,13 +81,15 @@ def registerUser(request):
         registerLastName = request.POST.get('registerLastName')
         registerContactNumber = request.POST.get('registerContactNumber')
         now = int(time.time())
+        registerGender = request.POST.get('gender')
         data = {
+            u'gender': registerGender,
             u'email': registerEmail,
             u'password': registerPassword,
             u'first_name': registerFirstName,
             u'middle_name': registerMiddleName,
             u'last_name': registerLastName,
-            u'contact_number': registerContactNumber,
+            u'phone_number': registerContactNumber,
             u'evaluator_id': str(now),
             u'date_created': datetime.datetime.now(),
             }

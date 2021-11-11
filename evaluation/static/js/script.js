@@ -20,6 +20,8 @@ $(".meter > span").each(function () {
   
 
 
+  
+
   function getRadioValue() {
     var ele1 = document.getElementsByName('remarks1');
     var ele2 = document.getElementsByName('remarks2');
@@ -52,8 +54,7 @@ $(".meter > span").each(function () {
     var ele29 = document.getElementsByName('remarks29');
     var ele30 = document.getElementsByName('remarks30');
     var ele31 = document.getElementsByName('remarks31');
-
-      
+    
     
     for(i = 0; i < ele1.length; i++) {
         if(ele1[i].checked)
@@ -190,4 +191,6 @@ document.getElementById("hiddenComment4").setAttribute("value", comment4)
 }
 
 
-  
+
+}
+
