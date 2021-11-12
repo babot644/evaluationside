@@ -101,8 +101,12 @@ def registerUser(request):
         elif len(registerPassword) > 25 and len(registerCPassword) > 25:
                     messages.warning(request, "Please make your password stronger 8 characters minimum 25 maximum")
                     return render(request,  'users/login.html')
+
         if registerPassword == registerCPassword:  
                 try:
+                        if registerEmail.find("@deped.gov.ph") < 1:
+                            messages.warning(request, "Please use @deped.gov.ph email")
+                            return render(request,  'users/login.html')
                         user = auth.create_user_with_email_and_password(registerEmail, registerPassword)
                         doc_ref = firestoreDB.collection(u'evaluators').document(str(now))
                         doc_ref2 = firestoreDB.collection(u'evaluator_report').document(str(now))
