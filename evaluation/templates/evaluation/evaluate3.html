@@ -37,7 +37,7 @@
     </div>
       
       {% block content %}
-      <form method="POST" action='/firstEvaluation/'>
+      <form method="POST" action='/evaluationInfo/'>
         {% csrf_token %}
     <table class="evaluation_area">
    
@@ -60,66 +60,32 @@
           <td style="width:10%; text-align:center;"><b>3</td>
           <td style="width:10%; text-align:center;"><b>4</b></td>
         </tr>
-        <tr>
-          <td colspan="5" style="font-size: large;"> Session/Delivery of Content</td>
-        </tr>
-        <tr>
-          <td>1. Program objective were clearly presented</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks1" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks1" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks1" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks1" value="4"></td>
-        </tr>
-        <tr>
-          <td>2. Program objective were attained</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks2" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks2" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks2" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks2" value="4"></td>
-        </tr>
-        <tr>
-          <td>3. Program objective were appropriate to trainees role and responsibility</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks3" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks3" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks3" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks3" value="4"></td>
-        </tr>
-        <tr>
-          <td>4. Content Delivered was based on authoritative and trusted sources</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks4" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks4" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks4" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks4" value="4"></td>
-        </tr>
-        <tr>
-          <td>5. Session activities were effective in generating learning </td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks5" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks5" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks5" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks5" value="4"></td>
-        </tr>
-        <tr>
-          <td>6. Adult learning methodologies were used</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks6" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks6" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks6" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks6" value="4"></td>
-        </tr>
-        <tr>
-          <td>7. Program followed logical order/structure</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks7" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks7" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks7" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks7" value="4"></td>
-        </tr>
-        <tr>
-          <td>8. Contribution of all trainees were encouraged</td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks8" value="1"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks8" value="2"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks8" value="3"></td>
-          <td style="text-align: center;"><input type="radio" id="" name="remarks8" value="4"></td>
-        </tr>
         
+        <tr>
+          <td colspan="5" style="font-size: large;"> Program Management</td>
+        </tr>
+        <tr>
+          <td>1. Training program was delivered as plannedc</td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks18" value="1"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks18" value="2"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks18" value="3"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks18" value="4"></td>
+        </tr>
+        <tr>
+          <td>2. Training program was managed effectively</td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks19" value="1"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks19" value="2"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks19" value="3"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks19" value="4"></td>
+        </tr>
+        <tr>
+          <td>3. Training program was well-structured</td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks20" value="1"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks20" value="2"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks20" value="3"></td>
+          <td style="text-align: center;"><input type="radio" id="" name="remarks20" value="4"></td>
+        </tr>
+       
 
         <tr>
             <td class="submitButton" colspan="5">
@@ -168,7 +134,7 @@
         <input type="hidden" id="result31" name="6q4" />
 
 
-                <input type="submit"  onclick="getRadioValue()"  value="Next" class="submitButton2"> 
+                <input type="submit"  onclick="getRadioValue()"  value="Submit" class="submitButton2"> 
               </form>
             </td>
         </tr>

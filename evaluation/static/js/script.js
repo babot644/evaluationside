@@ -191,6 +191,12 @@ document.getElementById("hiddenComment4").setAttribute("value", comment4)
 }
 
 
-
+function setDefaultPassword(){
+  document.getElementById(
+    "registerPassword").value = "12345678"
+    document.getElementById(
+      "registerCPassword").value = "12345678"
+  
+}
 
 

@@ -9,7 +9,8 @@ urlpatterns = [
     path('availableseminars/', views.availableSeminars, name='availableseminars'),
     path('loginUser/', views.loginUser, name='loginUser'),
     path('evaluateSeminar/', views.evaluateSeminar, name='evaluateSeminar'),
-    path('evaluationInfo/', views.evaluationInfo, name='evaluationInfo'),
+    
+    path('firstEvaluation/', views.evaluationInfo, name='firstEvaluation'),
     path('forgotPassword/', views.forgotPassword, name='forgotPassword'),
     path('forgotPasswordConfirm/', views.forgotPasswordConfirm, name='forgotPasswordConfirm'),
 ]

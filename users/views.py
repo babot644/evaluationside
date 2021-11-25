@@ -152,6 +152,59 @@ def evaluateSeminar(request):
         userLoggedin = request.session['userSession']
     return render(request, 'evaluation/evaluate.html', {"Username": userLoggedin,"seminarInfo": seminarInfo})
 
+
+def firstEvaluation(request):
+    seminarTitle = request.POST.get("seminarTitle")
+    seminarDatePosted = request.POST.get("date_posted")
+    seminarFacilitator = request.POST.get("Facilitator")
+    q1 = request.POST.get("1q1")
+    q2 = request.POST.get("1q2")
+    q3 = request.POST.get("1q3")
+    q4 = request.POST.get("1q4")
+    q5 = request.POST.get("1q5")
+    q6 = request.POST.get("1q6")
+    q7 = request.POST.get("1q7")
+    q8 = request.POST.get("1q8")
+    seminar_id = request.POST.get("seminar_id")
+    now = int(time.time())
+    evaluatorEmail = str(request.session['userSession'])
+    docs = firestoreDB.collection('evaluators').where('email', '==', evaluatorEmail).get()
+    yawa = []
+    for doc in docs:
+        yawa.append(doc.to_dict())
+
+    fullName = yawa[0]['first_name'] + " " + yawa[0]['middle_name'] + " " + yawa[0]['last_name']
+    data = {
+        "full_name": fullName,
+        "date_evaluated": now,
+        "evaluatorEmail": evaluatorEmail,
+        "seminarTitle" : seminarTitle,
+        "seminarDatePosted" : seminarDatePosted,
+        "seminarFacilitator" : seminarFacilitator,
+        'q1': q1,
+        'q2': q2,
+        'q3': q3,
+        'q4': q4,
+        'q5': q5,
+        'q6': q6,
+        'q7': q7,
+        'q8': q8,
+    }
+    if q1 and q2 and q3 and q4 and q5 and q6 and q7 and q8:
+        if request.session['userSession']:
+            userLoggedin = request.session['userSession']
+        
+        x = firestoreDB.collection(u'evaluations').document(seminar_id).collection("evaluators").document(yawa[0]['evaluator_id'])
+        x.set(data)
+        messages.success(request, "Thankyou for your evaluation!." )
+        return render(request,  'evaluation/evaluate2.html', {"Username": userLoggedin})  
+    else:
+        if request.session['userSession']:
+            userLoggedin = request.session['userSession']
+        
+        
+
+
 def evaluationInfo(request):
     q1 = request.POST.get("1q1")
     q2 = request.POST.get("1q2")
@@ -198,6 +251,7 @@ def evaluationInfo(request):
     yawa = []
     for doc in docs:
         yawa.append(doc.to_dict())
+    
 
     fullName = yawa[0]['first_name'] + " " + yawa[0]['middle_name'] + " " + yawa[0]['last_name']
     data = {
