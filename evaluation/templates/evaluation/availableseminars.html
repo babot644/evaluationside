@@ -38,13 +38,13 @@
     <form method="POST" action="/evaluateSeminar/">
       {% csrf_token %}
     <tr>
-      <td class="seminarTitle">{{avails.seminar_name}}</td>
+      <td class="seminarTitle">{{avails.seminar_title}}</td>
       <td class="datePosted">{{avails.date_created}}</td>
       <td class="seminarEvaluator">{{avails.facilitator}} <button type="sumbit" class="btn btn-primary">Evaluate</button></td>
       
     </tr>
 
-      <input type="hidden" name="seminarTitle" value="{{avails.seminar_name}}"/>
+      <input type="hidden" name="seminarTitle" value="{{avails.seminar_title}}"/>
       <input type="hidden" name="date_posted" value="{{avails.date_created}}"/>
       <input type="hidden" name="seminarFacilitator" value="{{avails.facilitator}}"/>
       <input type="hidden" name="seminar_id" value="{{avails.seminar_id}}"/>
