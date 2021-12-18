@@ -16,6 +16,7 @@
       {% endfor %}
     {% endif %} 
     {% block content %} 
+ <!--Main Container-->
   <div class="container3">
     <input type="checkbox" id="flip">
     <div class="cover">
@@ -29,7 +30,9 @@
       <div class="back">
       </div>
     </div>
+    <!--Main Form-->
     <div class="forms">
+      <!--Login Form-->
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
@@ -52,6 +55,7 @@
             </div>
         </form>
       </div>
+      <!--Sign Up Form-->
         <div class="signup-form">
           <div class="title">Sign up</div>
         <form method="POST" action="/registerUser/">
@@ -101,7 +105,7 @@
               <div class="input-box">
                 <i class="fas fa-user"></i>
                 Select Gender: 
-                <select name="gender" id="gender" required>
+                <select name="gender" id="gender"  title="gender" required>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -119,11 +123,7 @@
     </div>
     </div>
   </div>
-  
 
-        
-    
-    
   {% endblock %}
     
 
