@@ -200,3 +200,9 @@ function setDefaultPassword(){
 }
 
 
+function getFacilitator() {
+  var x = document.getElementById("mySelect").value;
+  document.getElementById("selected").innerHTML = "Evaluating " + x;
+  document.getElementById("selectedFacilitator").setAttribute("value", x);
+
+}

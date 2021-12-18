@@ -26,7 +26,11 @@
         <img src="{% static 'images/Deped_logo.png' %}" width="5%"  alt=""> Department of Education Evaluation System
         </div>
           {% if Username %}
-          <a href="{% url 'logout' %}" class="btn btn-primary" style="background-color:red; float:right; height: fit-content; margin: auto; margin-right:10px"  >Logout</a>
+          <form method="POST" action="/logout/">
+            {% csrf_token %}
+          <input type="submit" value="Logout" class="btn btn-primary" style="background-color:red; float:right; height: fit-content; margin: auto; margin-right:10px"  >
+          </form>
+          
           <a href="{% url 'availableseminars' %}" class="btn btn-primary" style="float:right; width: fit-content; height: fit-content; margin: auto; margin-right:10px" >Available Seminars </a>
           
             {% else %}

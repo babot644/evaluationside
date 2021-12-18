@@ -20,25 +20,42 @@
   {% load static %}
  
 {% include 'evaluation/header.html' %}
-
+{% if request.session.userSession %}
 {% include 'evaluation/instructionpage.html' %}
+{% block content %}
+      <form method="POST" action='/sixthEvaluation/'>
+        {% csrf_token %}
 <div class="eval_area">
   <div class="d-flex justify-content-center" style="text-align: center;">
     <div class="bg">
         <div class="d-flex flex-column bd-highlight mb-3" >
          
-         Seminar Title:<strong>{{ seminarInfo.Title }}</b> 
-         {{ seminarInfo.date_posted }}<br>
-          Facilitator: {{ seminarInfo.Facilitator }}
+          Seminar Title:<strong>{{ data.seminarTitle }}</b><br>
+            {{ data.date_posted }}<br>
+            <input type="hidden" id="seminarTitle" name="date_posted" value="{{  data.date_posted  }}"/>
+            {% if request.session.facilitator1 %}
+             Facilitator1: {{ request.session.facilitator1 }}<br>
+             <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+            {% endif %}
+            {% if request.session.facilitator2 %}
+             Facilitator2: {{ request.session.facilitator2 }}<br>
+             <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+            {% endif %}
+            {% if request.session.facilitator3 %}
+             Facilitator3: {{ request.session.facilitator3 }}<br>
+             <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+            {% endif %}
+            {% if request.session.facilitator4 %}
+             Facilitator4: {{ request.session.facilitator4 }}<br>
+             <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+            {% endif %}
         </strong>
       
         </div>
       </div>
     </div>
       
-      {% block content %}
-      <form method="POST" action='/evaluationInfo/'>
-        {% csrf_token %}
+      
     <table class="evaluation_area">
    
        
@@ -100,10 +117,10 @@
              
          
           
-        <input type="hidden" id="seminarTitle" name="seminarTitle" value="{{ seminarInfo.Title }}"/>
-        <input type="hidden" id="seminarTitle" name="date_posted" value="{{ seminarInfo.date_posted }}"/>
-        <input type="hidden" id="seminarTitle" name="Facilitator" value="{{ seminarInfo.Facilitator }}"/>
-        <input type="hidden" id="seminar_id" name="seminar_id" value="{{ seminarInfo.seminar_id }}"/>
+              <input type="hidden" id="seminarTitle" name="seminarTitle" value="{{ data.seminarTitle }}"/>
+              <input type="hidden" id="seminarTitle" name="date_posted" value="{{ data.date_posted }}"/>
+              
+              <input type="hidden" id="seminar_id" name="seminar_id" value="{{ seminar_id }}"/>
         <input type="hidden" id="hiddenComment1" name="hiddenComment1"/>
         <input type="hidden" id="hiddenComment2" name="hiddenComment2"/>
         <input type="hidden" id="hiddenComment3" name="hiddenComment3"/>
@@ -141,7 +158,31 @@
         <input type="hidden" id="result31" name="6q4" />
 
 
-                <input type="submit"  onclick="getRadioValue()"  value="Submit" class="submitButton2"> 
+                <input type="submit"  onclick="getRadioValue()"  value="Next" class="submitButton2"> 
+              </form>
+              <form method="POST" action="{% url 'fifthEvaluation' %}">
+                {% csrf_token %}
+                <input type="hidden" id="seminarTitle" name="seminarTitle" value="{{ data.seminarTitle }}"/>
+                <input type="hidden" id="seminarTitle" name="date_posted" value="{{  data.date_posted  }}"/>
+                <input type="hidden" name="seminar_id" value= "{{ request.session.seminar_id }}">
+                <input type="hidden"  name="back" value="back">
+                   {% if request.session.facilitator1 %}
+                    <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+                   {% endif %}
+                   {% if request.session.facilitator2 %}
+                    
+                    <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+                   {% endif %}
+                   {% if request.session.facilitator3 %}
+                   
+                    <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+                   {% endif %}
+                   {% if request.session.facilitator4 %}
+                    
+                    <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ seminarInfo.Facilitator1 }}"/>
+                   {% endif %}
+                
+                <input type="submit"  value="Back" class="submitButton2"> 
               </form>
             </td>
         </tr>
@@ -154,4 +195,5 @@
 
 </div>
 {% endblock content %}
+{% endif %}
 {% endblock body_data %}

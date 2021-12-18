@@ -19,12 +19,6 @@ def login(request):
 
 
 
-def logout(request):
-    try:
-        del request.session['userSession']
-    except:
-        return redirect('/')
-   
-    return render(request,  'users/logout.html')
+
 
     

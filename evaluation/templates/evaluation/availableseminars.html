@@ -29,7 +29,7 @@
       <tr>
         <th>Seminars Available </th>
         <th class="datePosted">Date Posted</th>
-        <th>Facilitator</th>
+        <th>Facilitators</th>
       </tr>
 
     {% for avails in available %}
@@ -38,15 +38,39 @@
     <form method="POST" action="/evaluateSeminar/">
       {% csrf_token %}
     <tr>
-      <td class="seminarTitle">{{avails.seminar_name}}</td>
+      <td class="seminarTitle">{{avails.seminar_title}}</td>
       <td class="datePosted">{{avails.date_created}}</td>
-      <td class="seminarEvaluator">{{avails.facilitator}} <button type="sumbit" class="btn btn-primary">Evaluate</button></td>
       
+      <td class="seminarEvaluator">
+        
+        {% if avails.facilicount != 0  %}
+          {% if avails.facilitator1 %} 
+           {{ avails.facilitator1}}<br>
+            <input type="hidden" name="seminarFacilitator1" value="{{avails.facilitator1}}"/>
+          {% endif %}
+          {% if avails.facilitator2 %} 
+          {{ avails.facilitator2}}<br>
+            <input type="hidden" name="seminarFacilitator2" value="{{avails.facilitator2}}"/>
+          {% endif %}
+          {% if avails.facilitator3 %} 
+          {{ avails.facilitator3}}<br>
+            <input type="hidden" name="seminarFacilitator3" value="{{avails.facilitator3}}"/>
+          {% endif %}
+          {% if avails.facilitator4 %} 
+          {{ avails.facilitator4}}<br>
+            <input type="hidden" name="seminarFacilitator4" value="{{avails.facilitator4}}"/>
+          {% endif %}
+        {% else %}
+          None<br>
+        {% endif %}
+        
+        <button type="sumbit" class="btn btn-primary">Evaluate</button>
+      </td>
+     
     </tr>
 
-      <input type="hidden" name="seminarTitle" value="{{avails.seminar_name}}"/>
+      <input type="hidden" name="seminarTitle" value="{{avails.seminar_title}}"/>
       <input type="hidden" name="date_posted" value="{{avails.date_created}}"/>
-      <input type="hidden" name="seminarFacilitator" value="{{avails.facilitator}}"/>
       <input type="hidden" name="seminar_id" value="{{avails.seminar_id}}"/>
       <input type="hidden" name="ongoingUser" value="{{request.session.userSession}}"/>
     </form>

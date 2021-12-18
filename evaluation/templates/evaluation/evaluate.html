@@ -20,27 +20,45 @@
   {% load static %}
  
 {% include 'evaluation/header.html' %}
-
+{% if request.session.userSession %}
 {% include 'evaluation/instructionpage.html' %}
+<form method="POST" action='/firstEvaluation/'>
+  {% csrf_token %}
+<table class="evaluation_area">
 <div class="eval_area">
   <div class="d-flex justify-content-center" style="text-align: center;">
     <div class="bg">
         <div class="d-flex flex-column bd-highlight mb-3" >
-         
-         Seminar Title:<strong>{{ seminarInfo.Title }}</b> 
+          Seminar Title:<strong>{{ seminarInfo.seminarTitle }}<br>
          {{ seminarInfo.date_posted }}<br>
-          Facilitator: {{ seminarInfo.Facilitator }}
+         {% if request.session.facilitator1 %}
+          Facilitator1: {{ request.session.facilitator1 }}<br>
+          <input type="hidden" id="seminarTitle" name="Facilitator1" value="{{ request.session.facilitator1 }}"/>
+         {% endif %}
+         {% if request.session.facilitator2 %}
+          Facilitator2: {{ request.session.facilitator2 }}<br>
+          <input type="hidden" id="seminarTitle" name="Facilitator2" value="{{ request.session.facilitator2 }}"/>
+         {% endif %}
+         {% if request.session.facilitator3 %}
+          Facilitator3: {{ request.session.facilitator3 }}<br>
+          <input type="hidden" id="seminarTitle" name="Facilitator3" value="{{ request.session.facilitator3 }}"/>
+         {% endif %}
+         {% if request.session.facilitator4 %}
+          Facilitator4: {{ request.session.facilitator4 }}<br>
+          <input type="hidden" id="seminarTitle" name="Facilitator4" value="{{ request.session.facilitator4 }}"/>
+         {% endif %}
+         
+         
+        
         </strong>
       
         </div>
       </div>
     </div>
       
-      {% block content %}
-      <form method="POST" action='/firstEvaluation/'>
-        {% csrf_token %}
-    <table class="evaluation_area">
-   
+      
+      
+      
        
       {% if messages %}
       {% for message in messages %}
@@ -127,9 +145,9 @@
              
          
           
-        <input type="hidden" id="seminarTitle" name="seminarTitle" value="{{ seminarInfo.Title }}"/>
+        <input type="hidden" id="seminarTitle" name="seminarTitle" value="{{ seminarInfo.seminarTitle }}"/>
         <input type="hidden" id="seminarTitle" name="date_posted" value="{{ seminarInfo.date_posted }}"/>
-        <input type="hidden" id="seminarTitle" name="Facilitator" value="{{ seminarInfo.Facilitator }}"/>
+        
         <input type="hidden" id="seminar_id" name="seminar_id" value="{{ seminarInfo.seminar_id }}"/>
         <input type="hidden" id="hiddenComment1" name="hiddenComment1"/>
         <input type="hidden" id="hiddenComment2" name="hiddenComment2"/>
@@ -170,6 +188,13 @@
 
                 <input type="submit"  onclick="getRadioValue()"  value="Next" class="submitButton2"> 
               </form>
+              <form method="POST" action='/availableseminars/'>
+                {% csrf_token %}
+                
+                
+                <input type="submit"  value="Back" class="submitButton2"> 
+              </form>
+              
             </td>
         </tr>
         <tr>
@@ -180,5 +205,11 @@
       </table>
 
 </div>
-{% endblock content %}
+    
+
+
+
+  
+
+{% endif %}
 {% endblock body_data %}
